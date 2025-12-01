@@ -1,4 +1,3 @@
-const { timeStamp } = require("console");
 const crypto = require("crypto");
 
 exports.register = (req, res) => {
