@@ -1,0 +1,7 @@
+const express = require("express");
+const router = express.Router();
+const keyController = require("../controllers/keyController");
+
+router.get("/get-message", keyController.message);
+
+module.exports = router;

@@ -7,5 +7,6 @@ global.clientPublicKey = null;
 
 app.use("/api", require("./routes/registerKey"));
 app.use("/api", require("./routes/encryptedKey"));
+app.use("/api", require("./routes/message"));
 
 app.listen(3000, () => console.log("Server running on port 3000"));

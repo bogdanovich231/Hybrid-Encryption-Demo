@@ -1,3 +1,4 @@
+const { timeStamp } = require("console");
 const crypto = require("crypto");
 
 exports.register = (req, res) => {
@@ -39,6 +40,34 @@ exports.encrypted = (res) => {
     res.json({
       encrypted_secret: encryptedAES.toString("base64"),
     });
+  } catch {
+    res.status(500).json({ error: "Server error", details: err.message });
+  }
+};
+
+exports.message = (req, res) => {
+  try {
+    const aesKey = global.aesKey;
+    if (!aesKey) {
+      return res.status(400).json({ error: "AES key not established." });
+    }
+
+    const timeStamp = new Date().toISOString();
+    const plaintext = `Pozdrowienia z serwera, czas: ${timeStamp}`;
+
+    const iv = crypto.randomBytes(12);
+
+    const cipher = crypto.createCipheriv("aes-256-gcm", aesKey, iv);
+    const encrypted = Buffer.concat([
+      cipher.update(plaintext, "utf8"),
+      cipher.final(),
+    ]);
+
+    const tag = cipher.getAuthTag();
+
+    const payload = Buffer.concat([iv, encrypted, tag]);
+
+    res.json({ ciphertext: payload.toString("base64") });
   } catch {
     res.status(500).json({ error: "Server error", details: err.message });
   }
