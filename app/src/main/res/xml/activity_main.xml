@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnSendKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generuj i wyślij klucz publiczny" />
+
+    <Button
+        android:id="@+id/btnGetSecret"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Odbierz wspólny sekret AES" />
+
+    <Button
+        android:id="@+id/btnGetMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Odbierz i odszyfruj wiadomość" />
+
+    <EditText
+        android:id="@+id/encryptedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Сiphertext (Base64)" />
+
+    <EditText
+        android:id="@+id/decryptedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Odszyfrowana wiadomość" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: "
+        android:padding="8dp"/>
+
+</LinearLayout>
